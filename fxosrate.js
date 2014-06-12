@@ -39,7 +39,7 @@ var fxosRate = {
   // Checks if a prompt for rating the app should be done at this moment
   // based on the initiailization criteria
   promptRequired: function(){
-      if (shouldPrompt)
+    if (this.shouldPrompt())
     	this.prompt();
   },
 
@@ -57,7 +57,7 @@ var fxosRate = {
     else if (!this.weeklyUsageReached()) // DONE
     	console.log("Not enough usage per week");
     else
-        prompt = true;
+      prompt = true;
     return prompt 
   },
 
@@ -93,11 +93,8 @@ var fxosRate = {
     var prompted = Date.parse(this.getLsItem("promptDate"));
     if (prompted != null) // otherwise it never was prompted before
     {
-      console.log("OK1")
       var now = new Date();
-      console.log("OK2")
       var days = Math.round((now.getTime()-prompted)/this.MILLISPERDAY);
-      console.log("OK3 " + days + " - " + this.remindPeriod)
       if (days < this.remindPeriod)
         over = false;
     }
@@ -113,7 +110,7 @@ var fxosRate = {
     if (this.getLsItem("promptDate") == null)
         reached = true;
     else if ((parseInt(this.getLsItem("usesWeek")) > this.usesPerWeekForPrompt)
-      || (parseInt(this.getLsItem("eventsWeek"))>=this.eventsPerWeekForPrompt))
+      && (parseInt(this.getLsItem("eventsWeek"))>=this.eventsPerWeekForPrompt))
      	reached = true;
     return reached;
   },
@@ -154,7 +151,7 @@ var fxosRate = {
     this.setLsItem("eventsWeek", 0);
     this.setLsItem("usesWeek", 0);
 
-    var rateIt = confirm("We are working hard to improve this application. Positive reviews and rates help us to continue doing so. Do you want to help us by rating this app?");
+    var rateIt = confirm(navigator.mozL10n.get("wanttorate"));
     if (rateIt == true)
     {
       this.setLsItem("alreadyRated", "yes");
@@ -162,10 +159,10 @@ var fxosRate = {
     }
     else
     {
-      var later = confirm("Do you want us to remind you to rate it later? If you select 'cancel' we will not ask you again.")
+      var later = confirm(navigator.mozL10n.get("wantremindlater"));
       if (later != true)
         this.setLsItem("rateRejected","yes");
-      alert("Thanks for using " + applicationName + "!");
+      alert(navigator.mozL10n.get("thankyoumessage"));
     }
   },
 };
