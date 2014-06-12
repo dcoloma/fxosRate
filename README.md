@@ -17,12 +17,11 @@ You just need to copy the file fxosrate.js to the scripts folder of your applica
 	
 Initializing the library
 ------------------------
-
-The 
+ 
 You need to invoke the init method with a set of parameters that will determine the prompt policy to the user. E.g.
 
 	rate = Object.create(fxosRate);
-	rate.init("memes", "1.0", 0, 0, 0, 0, 0);
+	rate.init("memes", "1.0", 0, 0, 0, 0, 0, 0);
 	
 This method should be invoked every time your app is launched (e.g. on your own init method)
 
@@ -53,8 +52,9 @@ The init method accepts 7 parameters that allow configuring accordingly the libr
 * version: It will be used to check if user has the latest version of the application (not implemented yet).
 * daysUntilPrompt: Number of days that will need to pass since first time the app was used before prompting the user. 7 would mean do not prompt the user during the first week. 0 means ignore this criteria.
 * usesUntilPrompt: Number of times the app must be launched before prompting the user. 10 would mean do not prompt the user during the first 10 launches. 0 means ignore this criteria.
-* eventsUntilPrompt: Number of events that the app must trigger during a week before launching the prompt to the user. This is helpful, for instance in case the activity of the app is more related to a given event than to launching the application itself. It is linked to the logEvent method described above. 0 means ignore this criteria.
+* eventsUntilPrompt: Number of events that the app must trigger before launching a first prompt to the user. This is helpful, for instance in case the activity of the app is more related to a given event than to launching the application itself. It is linked to the logEvent method described above. 0 means ignore this criteria.
 * usesPerWeekForPromompt: Number of times the app must have been launched during a week before launching the prompt to the user. 0 means ignore this criteria.
+* eventsPerWeekForPrompt: Number of events that the app must trigger during a week before launching the prompt to the user. This is helpful, for instance in case the activity of the app is more related to a given event than to launching the application itself. It is linked to the logEvent method described above. 0 means ignore this criteria.
 * remindPeriod: Once a user has postponed to rate the application, this could be used as a waiting period before prompting him next time. 0 means ignore this criteria.
 
 Behaviour
