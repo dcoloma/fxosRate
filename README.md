@@ -5,15 +5,30 @@ fxosRate is a Library to help the promotion of your Firefox Marketplace apps by 
 
 It's inspired in the iRate library for iPhone/Apple Store. 
 
+This is an ALPHA version, so expect bugs, glithes and many other things. If you detect a bug, please file an issue in github or even better, submit a patch!
+
 Using fxosRate
 ==============
 
 Including the library
 --------------
 
-You just need to copy the file fxosrate.js to the scripts folder of your application and include it in your HTML, e.g.
+1 - You need to copy the file fxosrate.js to the scripts folder of your application and include it in your HTML, e.g.
 
 	<script src="scripts/fxosrate.js"></script>
+	
+2 - Library supports localization based on the L10n library offered by FirefoxOS. You can customize the texts used to prompt the user in different languages (currently Spanish, English and Portuguese - but you can extend the list).
+
+A/ If you are already using L10n library. You just need to add the fxosRate l10n properties files to your locales.ini.
+
+B/ If you are not using it yet you need to copy the l10n.js library to your project as well as the content of the locales folder.
+
+Then you just need to include them in your html, e.g.:
+
+	<script src="scripts/l10n.js" charset="utf-8"></script>
+	<link rel="resource" type="application/l10n" href="locales/locales.ini" />
+
+	
 	
 Initializing the library
 ------------------------
@@ -43,10 +58,10 @@ In this case, the app needs to notify the library via the method logEvent(numEve
 	rate.promptRequired() // Check if needs to be prompted
 	
 	
-Library Parameterization
+Library Configuration
 ========================
 
-The init method accepts 7 parameters that allow configuring accordingly the library:
+The init method accepts 8 parameters that allow configuring accordingly the library:
 
 * applicationName: Name of your application in the marketplace, it's important it's the same as in the marketplace so that user can be redirected to the correct "rate me" page.
 * version: It will be used to check if user has the latest version of the application (not implemented yet).
@@ -56,6 +71,9 @@ The init method accepts 7 parameters that allow configuring accordingly the libr
 * usesPerWeekForPromompt: Number of times the app must have been launched during a week before launching the prompt to the user. 0 means ignore this criteria.
 * eventsPerWeekForPrompt: Number of events that the app must trigger during a week before launching the prompt to the user. This is helpful, for instance in case the activity of the app is more related to a given event than to launching the application itself. It is linked to the logEvent method described above. 0 means ignore this criteria.
 * remindPeriod: Once a user has postponed to rate the application, this could be used as a waiting period before prompting him next time. 0 means ignore this criteria.
+
+
+Additionally, you can change the Strings used to prompt the user by modifying the files located at the locales folder for the supported languages. You can also add more locales and included them in the locales.ini file.
 
 Behaviour
 ================
