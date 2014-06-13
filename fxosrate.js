@@ -19,9 +19,8 @@ var fxosRate = {
     this.setLsItem("usesWeek",  parseInt(this.usesWeek) + 1);
     this.eventsWeek = this.getLsItem("eventsWeek") || 0;
     this.events = this.getLsItem("events") || 0;
-    this.usedTimes = this.getLsItem("usedTimes") || 1;
-    this.setLsItem("usedTimes",  parseInt(this.usedTimes));
-    //this.setLsItem("promptedOnce", this.setLsItem("promptedOnce") || false);
+    this.usedTimes = this.getLsItem("usedTimes") || 0;
+    this.setLsItem("usedTimes",  parseInt(this.usedTimes)+1);
 
     this.firstUsageDate = this.getLsItem("firstUsageDate") || new Date();
     this.setLsItem("firstUsageDate", this.firstUsageDate);
@@ -164,5 +163,19 @@ var fxosRate = {
         this.setLsItem("rateRejected","yes");
       alert(navigator.mozL10n.get("thankyoumessage"));
     }
+  },
+
+  // only for testing purposes
+  clear: function() {
+    this.setLsItem("usesWeek",  0);
+    this.setLsItem("usedTimes", 0); 
+    this.setLsItem("firstUsageDate", new Date()); 
+    this.setLsItem("eventsWeek", 0);
+    this.setLsItem("events", 0);
+    this.setLsItem("weekStartDate", null);
+    this.setLsItem("promptDate", null); 
+    this.setLsItem("usesWeek", 0);
+    this.setLsItem("alreadyRated", "no");
+    this.setLsItem("rateRejected", "no");
   },
 };
