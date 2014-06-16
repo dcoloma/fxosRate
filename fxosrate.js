@@ -74,13 +74,20 @@ var fxosRate = {
   // enough means number of times launched or days since first launch
   minimumUsageMet: function(){
     usedEnough = false;
-    var now = new Date();
-    var days = Math.round(
-           (now.getTime() - Date.parse(this.getLsItem("firstUsageDate")))/this.MILLISPERDAY); 
-    if ((this.getLsItem("usedTimes") > this.usesUntilPrompt) &&
-        (days >= this.daysUntilPrompt) && 
-        (this.getLsItem("events") >= this.eventsUntilPrompt))
+
+    if (this.getLsItem("prompted") == "no") {
+      var now = new Date();
+      var days = Math.round(
+        (now.getTime() - new Date(this.getLsItem("firstUsageDate")).getTime())/this.MILLISPERDAY); 
+      if ((this.getLsItem("usedTimes") > this.usesUntilPrompt) &&
+          (days >= this.daysUntilPrompt) && 
+          (this.getLsItem("events") >= this.eventsUntilPrompt))
+        usedEnough = true;
+    }
+    else
+    {
       usedEnough = true;
+    }
 
     return usedEnough;
   },
@@ -89,11 +96,11 @@ var fxosRate = {
   // period before doing so - returns true if "not remind period" is over
   notRemindPeriodOver: function(){
     var over = true;
-    var prompted = Date.parse(this.getLsItem("promptDate"));
-    if (prompted != null) // otherwise it never was prompted before
-    {
+    var prompted = new Date(this.getLsItem("promptDate"));
+    if (this.getLsItem("prompted") == "yes") { // otherwise it never was prompted before
       var now = new Date();
-      var days = Math.round((now.getTime()-prompted)/this.MILLISPERDAY);
+      var days = Math.round((now.getTime()-prompted.getTime())/this.MILLISPERDAY);
+      console.log(days);
       if (days < this.remindPeriod)
         over = false;
     }
@@ -106,8 +113,8 @@ var fxosRate = {
   // return true if user has not ever been prompted yet
   weeklyUsageReached: function(){
     reached = false;
-    if (this.getLsItem("promptDate") == null)
-        reached = true;
+    if (this.getLsItem("prompted") == "no")
+      reached = true;
     else if ((parseInt(this.getLsItem("usesWeek")) > this.usesPerWeekForPrompt)
       && (parseInt(this.getLsItem("eventsWeek"))>=this.eventsPerWeekForPrompt))
      	reached = true;
@@ -129,11 +136,11 @@ var fxosRate = {
   // Helper function to check if a week has already passed so that we need
   // to reset counters for weekly control
   checkWeekPeriod: function(){
-    var weekStartDate = Date.parse(this.getLsItem("weekStartDate"));
+    var weekStartDate = new Date(this.getLsItem("weekStartDate"));
     if (weekStartDate != null)
     {
       var now = new Date();
-      var days = Math.round((now.getTime()-weekStartDate)/this.MILLISPERDAY);
+      var days = Math.round((now.getTime()-weekStartDate.getTime())/this.MILLISPERDAY);
       if (days > 7) // If more than 1 week has passed, it's time to reset 
       {
         this.setLsItem("weekStartDate", now);
@@ -146,6 +153,7 @@ var fxosRate = {
   // Shows the prompt to the user
   prompt: function(){
     this.setLsItem("promptDate", new Date());
+    this.setLsItem("prompted", "yes");
     this.setLsItem("weekStartDate", new Date());
     this.setLsItem("eventsWeek", 0);
     this.setLsItem("usesWeek", 0);
@@ -174,6 +182,7 @@ var fxosRate = {
     this.setLsItem("events", 0);
     this.setLsItem("weekStartDate", null);
     this.setLsItem("promptDate", null); 
+    this.setLsItem("prompted", "no"); 
     this.setLsItem("usesWeek", 0);
     this.setLsItem("alreadyRated", "no");
     this.setLsItem("rateRejected", "no");
