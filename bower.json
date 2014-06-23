@@ -1,0 +1,28 @@
+{
+  "name": "fxosRate",
+  "main": "fxosRate.js",
+  "version": "0.0.1",
+  "homepage": "https://github.com/dcoloma/fxosRate",
+  "authors": [
+    "Daniel Coloma<dcoloma@tid.es>"
+  ],
+  "description": "Firefox OS rate library",
+  "moduleType": [
+    "amd"
+  ],
+  "keywords": [
+    "firefox",
+    "rate",
+    "firefox",
+    "os",
+    "marketplace"
+  ],
+  "license": "Apache",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
