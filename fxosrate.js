@@ -183,7 +183,6 @@
       if (later !== true) {
         this.setLsItem('rateRejected', 'yes');
       }
-      window.alert(navigator.mozL10n.get('thankyoumessage'));
     }
   };
 
