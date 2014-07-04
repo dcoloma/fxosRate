@@ -87,20 +87,16 @@
   fxosRate.minimumUsageMet = function() {
     var usedEnough = false;
 
-    if (this.getLsItem('prompted') === 'no') {
-      var now = new Date();
-      var days = Math.round(
-        (now.getTime() - new Date(this.getLsItem('firstUsageDate')).getTime()) /
-        this.MILLISPERDAY);
-      if ((this.getLsItem('usedTimes') > this.usesUntilPrompt) &&
-          (days >= this.daysUntilPrompt) &&
-          (this.getLsItem('events') >= this.eventsUntilPrompt)) {
-        usedEnough = true;
-      }
-    } else {
+    var now = new Date();
+    var days = Math.round(
+      (now.getTime() - new Date(this.getLsItem('firstUsageDate')).getTime()) /
+      this.MILLISPERDAY);
+
+    if ((this.getLsItem('usedTimes') > this.usesUntilPrompt) &&
+        (days >= this.daysUntilPrompt) &&
+        (this.getLsItem('events') >= this.eventsUntilPrompt)) {
       usedEnough = true;
     }
-
     return usedEnough;
   };
 
