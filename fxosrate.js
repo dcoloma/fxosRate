@@ -32,6 +32,8 @@
     this.usedTimes = this.getLsItem('usedTimes') || 0;
     this.setLsItem('usedTimes', parseInt(this.usedTimes) + 1);
 
+    this.wasPrompted = this.getLsItem('prompted') || "no";
+    this.setLsItem('prompted', this.wasPrompted);
     this.firstUsageDate = this.getLsItem('firstUsageDate') || new Date();
     this.setLsItem('firstUsageDate', this.firstUsageDate);
     this.checkWeekPeriod();
