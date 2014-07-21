@@ -9,17 +9,53 @@
     fxosRate = root.fxosRate = {};
   }
 
-  fxosRate.init = function(applicationName, applicationVersion,
-      daysUntilPrompt, usesUntilPrompt, eventsUntilPrompt, usesPerWeekForPrompt,
-      eventsPerWeekForPrompt, remindPeriod) {
+  var DEFAULTS = {
+    daysUntilPrompt: 0,
+    usesUntilPrompt: 0,
+    eventsUntilPrompt: 0,
+    usesPerWeekForPrompt: 0,
+    eventsPerWeekForPrompt: 0,
+    remindPeriod: 0
+  };
+  var optArgsNames = [
+    'daysUntilPrompt',
+    'usesUntilPrompt',
+    'eventsUntilPrompt',
+    'usesPerWeekForPrompt',
+    'eventsPerWeekForPrompt',
+    'remindPeriod'
+  ];
+  var optArgsOffset = 2;
+
+  fxosRate.init = function(applicationName, applicationVersion, config) {
+
+    var optArgs = Array.prototype.slice.call(arguments, optArgsOffset);
+
+    // Fallback to keep compatibility
+    if (arguments.length > optArgsOffset && typeof config !== 'object') {
+      config = {};
+      optArgsNames.forEach(function (argumentName, index) {
+        config[argumentName] = optArgs[index];
+      });
+    }
+
+    // Set defaults
+    config = config || {};
+    for (var key in DEFAULTS) {
+      if (!config.hasOwnProperty(key) || typeof config[key] === 'undefined') {
+        config[key] = DEFAULTS[key]
+      }
+    }
+
     this.applicationName = applicationName;
     this.applicationVersion = applicationVersion;
-    this.daysUntilPrompt = daysUntilPrompt || 0;
-    this.usesUntilPrompt = usesUntilPrompt || 0;
-    this.eventsUntilPrompt = eventsUntilPrompt || 0;
-    this.usesPerWeekForPrompt = usesPerWeekForPrompt || 0;
-    this.eventsPerWeekForPrompt = eventsPerWeekForPrompt || 0;
-    this.remindPeriod = remindPeriod || 0;
+
+    this.daysUntilPrompt = config.daysUntilPrompt;
+    this.usesUntilPrompt = config.usesUntilPrompt;
+    this.eventsUntilPrompt = config.eventsUntilPrompt;
+    this.usesPerWeekForPrompt = config.usesPerWeekForPrompt;
+    this.eventsPerWeekForPrompt = config.eventsPerWeekForPrompt;
+    this.remindPeriod = config.remindPeriod;
 
     this.MILLISPERDAY = 86400000;
     this.MARKETBASEURL = 'https://marketplace.firefox.com/app/';

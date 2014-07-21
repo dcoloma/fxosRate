@@ -36,9 +36,9 @@ Initializing the library
 You need to invoke the init method with a set of parameters that will determine the prompt policy to the user. E.g.
 
 	rate = Object.create(fxosRate);
-	rate.init("memes", "1.0", 0, 0, 0, 0, 0, 0);
+	rate.init("memes", "1.0");
 	
-This method should be invoked every time your app is launched (e.g. on your own init method)
+This method should be invoked every time your app is launched (e.g. on your own init method). The `init` method accept a third optional configuration object. See Library Configuration below.
 
 Prompting the user
 -------------------------
@@ -61,7 +61,7 @@ In this case, the app needs to notify the library via the method logEvent(numEve
 Library Configuration
 ========================
 
-The init method accepts 8 parameters that allow configuring accordingly the library:
+The `init` method accepts a third optional configuration object with the following keys to allow configuring accordingly the library:
 
 * applicationName: Name of your application in the marketplace, it's important it's the same as in the marketplace so that user can be redirected to the correct "rate me" page.
 * version: It will be used to check if user has the latest version of the application (not implemented yet).
@@ -72,19 +72,16 @@ The init method accepts 8 parameters that allow configuring accordingly the libr
 * eventsPerWeekForPrompt: Number of events that the app must trigger during a week before launching the prompt to the user. This is helpful, for instance in case the activity of the app is more related to a given event than to launching the application itself. It is linked to the logEvent method described above. 0 means ignore this criteria.
 * remindPeriod: Once a user has postponed to rate the application, this could be used as a waiting period before prompting him next time. 0 means ignore this criteria.
 
-
-Additionally, you can change the Strings used to prompt the user by modifying the files located at the locales folder for the supported languages. You can also add more locales and included them in the locales.ini file.
+Additionally, you can change the strings used to prompt the user by modifying the files located at the locales folder for the supported languages. You can also add more locales and included them in the locales.ini file.
 
 Behaviour
 ================
 
-Every time the method promptRequired is executed, the library will check if based on the criteria defined by the initialization paramters user should be prompted.
+Every time the method `promptRequired` is executed, the library will check if based on the criteria defined by the initialization paramters user should be prompted.
 
 If he should be prompted, user can take multiple decisions:
 
 - Rate the application: In this case user will be forwarded to the rate page and won't be asked to rate the app again.
 - Don't rate it and never be reminded: In this case, the library won't ask the user again to rate the app.
 - Be reminded: The user will be reminded for rating the app after a remind period if the other usage criteria is met.
-
-
 

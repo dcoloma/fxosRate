@@ -1,3 +1,68 @@
+// Config tests
+QUnit.test("Direct passed arguments work", function (assert){
+ var rate = Object.create(fxosRate);
+ rate.init("np1", "1.0", 1, 2, 3, 4, 5, 6);
+
+ assert.equal(rate.daysUntilPrompt, 1);
+ assert.equal(rate.usesUntilPrompt, 2);
+ assert.equal(rate.eventsUntilPrompt, 3);
+ assert.equal(rate.usesPerWeekForPrompt, 4);
+ assert.equal(rate.eventsPerWeekForPrompt, 5);
+ assert.equal(rate.remindPeriod, 6);
+ rate.clear();
+});
+
+QUnit.test("Dictionary passed arguments work", function (assert){
+ var rate = Object.create(fxosRate);
+ rate.init("np1", "1.0", {
+   daysUntilPrompt: 1,
+   usesUntilPrompt: 2,
+   eventsUntilPrompt: 3,
+   usesPerWeekForPrompt: 4,
+   eventsPerWeekForPrompt: 5,
+   remindPeriod: 6
+ });
+
+ assert.equal(rate.daysUntilPrompt, 1);
+ assert.equal(rate.usesUntilPrompt, 2);
+ assert.equal(rate.eventsUntilPrompt, 3);
+ assert.equal(rate.usesPerWeekForPrompt, 4);
+ assert.equal(rate.eventsPerWeekForPrompt, 5);
+ assert.equal(rate.remindPeriod, 6);
+ rate.clear();
+});
+
+QUnit.test("Defaults work for missed keys", function (assert){
+ var rate = Object.create(fxosRate);
+ rate.init("np1", "1.0", {
+   daysUntilPrompt: 1,
+   usesPerWeekForPrompt: 4,
+   eventsPerWeekForPrompt: 5,
+   remindPeriod: 6
+ });
+
+ assert.equal(rate.daysUntilPrompt, 1);
+ assert.equal(rate.usesUntilPrompt, 0);
+ assert.equal(rate.eventsUntilPrompt, 0);
+ assert.equal(rate.usesPerWeekForPrompt, 4);
+ assert.equal(rate.eventsPerWeekForPrompt, 5);
+ assert.equal(rate.remindPeriod, 6);
+ rate.clear();
+});
+
+QUnit.test("Defaults work for missed config object", function (assert){
+ var rate = Object.create(fxosRate);
+ rate.init("np1", "1.0");
+
+ assert.equal(rate.daysUntilPrompt, 0);
+ assert.equal(rate.usesUntilPrompt, 0);
+ assert.equal(rate.eventsUntilPrompt, 0);
+ assert.equal(rate.usesPerWeekForPrompt, 0);
+ assert.equal(rate.eventsPerWeekForPrompt, 0);
+ assert.equal(rate.remindPeriod, 0);
+ rate.clear();
+});
+
 // Not Prompted tests
 QUnit.test("No Prompted ** Limit: Days 7/1 Uses 0/0, Events 0/1 - NO PROMPT", function (assert){
  var rate = Object.create(fxosRate);
