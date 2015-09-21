@@ -71,9 +71,13 @@ QUnit.test("No Prompted ** Limit: Days 7/1 Uses 0/0, Events 0/1 - NO PROMPT", fu
  var pDate = new Date();
  pDate.setDate(pDate.getDate() - 1);
  rate.setLsItem("prompted", "no");
+ rate.prompted = "no";
  rate.setLsItem("firstUsageDate", pDate);
+ rate.firstUsageDate = pDate;
  rate.setLsItem("events", 1);
+ rate.events = 1;
  rate.setLsItem("usedTimes", 0);
+ rate.usedTimes = 0;
 
  assert.equal(rate.shouldPrompt() , false);
  rate.clear();
@@ -86,9 +90,13 @@ QUnit.test("No Prompted ** Limit: Days 7/6 Uses 0/1 Events 0/2 - NO PROMPT", fun
  var pDate = new Date();
  pDate.setDate(pDate.getDate() - 6);
  rate.setLsItem("prompted", "no");
+ rate.prompted = "no";
  rate.setLsItem("firstUsageDate", pDate);
+ rate.firstUsageDate = pDate;
  rate.setLsItem("events", 2);
+ rate.events = 2;
  rate.setLsItem("usedTimes", 1);
+ rate.usedTimes = 1;
 
  assert.equal(rate.shouldPrompt() , false);
  rate.clear();
@@ -101,9 +109,13 @@ QUnit.test("No Prompted ** Limit: Days 7/7 Uses 0/1 Events 0/5 - PROMPT", functi
  var pDate = new Date();
  pDate.setDate(pDate.getDate() - 7);
  rate.setLsItem("firstUsageDate", pDate);
+ rate.firstUsageDate = pDate;
  rate.setLsItem("prompted", "no");
+ rate.propmted = "no";
  rate.setLsItem("events", 5);
+ rate.events = 5;
  rate.setLsItem("usedTimes", 1);
+ rate.usedTimes = 1;
 
  assert.equal(rate.shouldPrompt() , true);
  rate.clear();
@@ -116,9 +128,13 @@ QUnit.test("No Prompted ** Limit: Days 0/1 Uses 5/4 Events 0/1 - NO PROMPT", fun
  var pDate = new Date();
  pDate.setDate(pDate.getDate() - 1);
  rate.setLsItem("firstUsageDate", pDate);
+ rate.firstUsageDate = pDate;
  rate.setLsItem("prompted", "no");
+ rate.prompted = "no";
  rate.setLsItem("events", 1);
+ rate.events = 1;
  rate.setLsItem("usedTimes", 4);
+ rate.usedTimes = 4;
 
  assert.equal(rate.shouldPrompt() , false);
  rate.clear();
@@ -131,14 +147,17 @@ QUnit.test("No Prompted ** Limit: Days 0/1 Uses 5/6 Events 0/2 - PROMPT", functi
  var pDate = new Date();
  pDate.setDate(pDate.getDate() - 1);
  rate.setLsItem("firstUsageDate", pDate);
+ rate.firstUsageDate = pDate;
  rate.setLsItem("prompted", "no");
+ rate.prompted = "no";
  rate.setLsItem("events", 2);
+ rate.events = 2;
  rate.setLsItem("usedTimes", 6);
+ rate.usedTimes = 6;
 
  assert.equal(rate.shouldPrompt() , true);
  rate.clear();
 });
-
 
 QUnit.test("No Prompted ** Limit: Days 2/1 Uses 2/3 Events 0/1 - NO PROMPT", function (assert){
  var rate = Object.create(fxosRate);
@@ -147,9 +166,13 @@ QUnit.test("No Prompted ** Limit: Days 2/1 Uses 2/3 Events 0/1 - NO PROMPT", fun
  var pDate = new Date();
  pDate.setDate(pDate.getDate() - 1);
  rate.setLsItem("firstUsageDate", pDate);
+ rate.firstUsageDate = pDate;
  rate.setLsItem("prompted", "no");
+ rate.prompted = "no";
  rate.setLsItem("events", 2);
+ rate.events = 2;
  rate.setLsItem("usedTimes", 6);
+ rate.usedTimes = 6;
 
  assert.equal(rate.shouldPrompt() , false);
  rate.clear();
@@ -162,9 +185,13 @@ QUnit.test("No Prompted ** Limit: Days 2/3 Uses 2/3 Events 0/1 - PROMPT", functi
  var pDate = new Date();
  pDate.setDate(pDate.getDate() - 3);
  rate.setLsItem("firstUsageDate", pDate);
+ rate.firstUsageDate = pDate;
  rate.setLsItem("prompted", "no");
+ rate.prompted = "no";
  rate.setLsItem("events", 1);
+ rate.events = 1;
  rate.setLsItem("usedTimes", 3);
+ rate.usedTimes = 3;
 
  assert.equal(rate.shouldPrompt() , true);
  rate.clear();
@@ -177,14 +204,17 @@ QUnit.test("No Prompted ** Limit: Days 2/3 Uses 2/1 Events 0/1 - NO PROMPT", fun
  var pDate = new Date();
  pDate.setDate(pDate.getDate() - 3);
  rate.setLsItem("firstUsageDate", pDate);
+ rate.firstUsageDate = pDate;
  rate.setLsItem("prompted", "no");
+ rate.prompted = "no";
  rate.setLsItem("events", 1);
+ rate.events = 1;
  rate.setLsItem("usedTimes", 1);
+ rate.usedTimes = 1;
 
  assert.equal(rate.shouldPrompt() , false);
  rate.clear();
 });
-
 
 QUnit.test("No Prompted ** Limit: Days 0/3 Uses 2/3 Events 3/4 - PROMPT", function (assert){
  var rate = Object.create(fxosRate);
@@ -193,9 +223,13 @@ QUnit.test("No Prompted ** Limit: Days 0/3 Uses 2/3 Events 3/4 - PROMPT", functi
  var pDate = new Date();
  pDate.setDate(pDate.getDate() - 1);
  rate.setLsItem("firstUsageDate", pDate);
+ rate.firstUsageDate = pDate;
  rate.setLsItem("prompted", "no");
+ rate.prompted = "no";
  rate.setLsItem("events", 4);
+ rate.events = 4;
  rate.setLsItem("usedTimes", 3);
+ rate.usedTimes = 3;
 
  assert.equal(rate.shouldPrompt() , true);
  rate.clear();
@@ -208,9 +242,13 @@ QUnit.test("No Prompted ** Limit: Days 0/3 Uses 2/1 Events 3/4 - NO PROMPT", fun
  var pDate = new Date();
  pDate.setDate(pDate.getDate() - 3);
  rate.setLsItem("firstUsageDate", pDate);
+ rate.firstUsageDate = pDate;
  rate.setLsItem("prompted", "no");
+ rate.prompted = "no";
  rate.setLsItem("events", 4);
+ rate.events = 4;
  rate.setLsItem("usedTimes", 1);
+ rate.usedTimes = 1;
 
  assert.equal(rate.shouldPrompt() , false);
  rate.clear();
@@ -223,9 +261,13 @@ QUnit.test("No Prompted ** Limit: Days 0/3 Uses 2/3 Events 3/2 - NO PROMPT", fun
  var pDate = new Date();
  pDate.setDate(pDate.getDate() - 3);
  rate.setLsItem("firstUsageDate", pDate);
+ rate.firstUsageDate = pDate;
  rate.setLsItem("prompted", "no");
+ rate.prompted = "no";
  rate.setLsItem("events", 2);
+ rate.events = 2;
  rate.setLsItem("usedTimes", 3);
+ rate.usedTimes = 3;
 
  assert.equal(rate.shouldPrompt() , false);
  rate.clear();
@@ -238,9 +280,13 @@ QUnit.test("No Prompted ** Limit: Days 2/3 Uses 3/2 Events 2/1 - NO PROMPT", fun
  var pDate = new Date();
  pDate.setDate(pDate.getDate() - 3);
  rate.setLsItem("firstUsageDate", pDate);
+ rate.firstUsageDate = pDate;
  rate.setLsItem("prompted", "no");
+ rate.prompted = "no";
  rate.setLsItem("events", 1);
+ rate.events = 1;
  rate.setLsItem("usedTimes", 2);
+ rate.usedTimes = 2;
 
  assert.equal(rate.shouldPrompt() , false);
  rate.clear();
@@ -253,9 +299,13 @@ QUnit.test("No Prompted ** Limit: Days 2/3 Uses 3/4 Events 2/1 - NO PROMPT", fun
  var pDate = new Date();
  pDate.setDate(pDate.getDate() - 3);
  rate.setLsItem("firstUsageDate", pDate);
+ rate.firstUsageDate = pDate;
  rate.setLsItem("prompted", "no");
+ rate.prompted = "no";
  rate.setLsItem("events", 1);
+ rate.events = 1;
  rate.setLsItem("usedTimes", 4);
+ rate.usedTimes = 4;
 
  assert.equal(rate.shouldPrompt() , false);
  rate.clear();
@@ -269,9 +319,13 @@ QUnit.test("No Prompted ** Limit: Days 2/3 Uses 3/4 Events 2/3 - PROMPT", functi
  var pDate = new Date();
  pDate.setDate(pDate.getDate() - 3);
  rate.setLsItem("firstUsageDate", pDate);
+ rate.firstUsageDate = pDate;
  rate.setLsItem("prompted", "no");
+ rate.prompted = "no";
  rate.setLsItem("events", 3);
+ rate.events = 3;
  rate.setLsItem("usedTimes", 4);
+ rate.usedTimes = 4;
 
  assert.equal(rate.shouldPrompt() , true);
  rate.clear();
@@ -284,9 +338,13 @@ QUnit.test("No Prompted ** Limit: Days 2/3 Uses 3/2 Events 2/3 - NO PROMPT", fun
  var pDate = new Date();
  pDate.setDate(pDate.getDate() - 3);
  rate.setLsItem("firstUsageDate", pDate);
+ rate.firstUsageDate = pDate;
  rate.setLsItem("prompted", "no");
+ rate.prompted = "no";
  rate.setLsItem("events", 3);
+ rate.events = 3;
  rate.setLsItem("usedTimes", 2);
+ rate.usedTimes = 2;
 
  assert.equal(rate.shouldPrompt() , false);
  rate.clear();
@@ -299,9 +357,13 @@ QUnit.test("No Prompted ** Limit: Days 2/1 Uses 3/2 Events 2/3 - NO PROMPT", fun
  var pDate = new Date();
  pDate.setDate(pDate.getDate() - 1);
  rate.setLsItem("firstUsageDate", pDate);
+ rate.firstUsageDate = pDate;
  rate.setLsItem("prompted", "no");
+ rate.prompted = "no";
  rate.setLsItem("events", 3);
+ rate.events = 3;
  rate.setLsItem("usedTimes", 2);
+ rate.usedTimes = 2;
 
  assert.equal(rate.shouldPrompt() , false);
  rate.clear();
@@ -314,9 +376,13 @@ QUnit.test("No Prompted ** Limit: Days 2/1 Uses 3/3 Events 2/3 - NO PROMPT", fun
  var pDate = new Date();
  pDate.setDate(pDate.getDate() - 1);
  rate.setLsItem("firstUsageDate", pDate);
+ rate.firstUsageDate = pDate;
  rate.setLsItem("prompted", "no");
+ rate.prompted = "no";
  rate.setLsItem("events", 3);
+ rate.events = 3;
  rate.setLsItem("usedTimes", 3);
+ rate.usedTimes = 3;
 
  assert.equal(rate.shouldPrompt() , false);
  rate.clear();
@@ -332,9 +398,13 @@ QUnit.test("Prompted Once ** Weekly: Uses 2/3, Events 2/3, delay 7/8 - PROMPT", 
  var pDate = new Date();
  pDate.setDate(pDate.getDate() - 8);
  rate.setLsItem("promptDate", pDate);
+ rate.promptDate = pDate;
  rate.setLsItem("eventsWeek", 3);
+ rate.eventsWeek = 3;
  rate.setLsItem("prompted", "yes");
+ rate.prompted = "yes";
  rate.setLsItem("usesWeek", 3);
+ rate.usesWeek = 3;
 
  assert.equal(rate.shouldPrompt() , true);
  rate.clear();
@@ -348,9 +418,13 @@ QUnit.test("Prompted Once ** Weekly: Uses 2/3, Events 2/3, delay 7/5 - NO PROMPT
  var pDate = new Date();
  pDate.setDate(pDate.getDate() - 5);
  rate.setLsItem("promptDate", pDate);
+ rate.promptDate = pDate;
  rate.setLsItem("eventsWeek", 3);
+ rate.eventsWeek = 3;
  rate.setLsItem("prompted", "yes");
+ rate.prompted = "yes";
  rate.setLsItem("usesWeek", 3);
+ rate.usesWeek = 3;
 
  assert.equal(rate.shouldPrompt() , false);
  rate.clear();
@@ -364,9 +438,13 @@ QUnit.test("Prompted Once ** Weekly: Uses 2/1, Events 2/1, delay 7/8 - NO PROMPT
  var pDate = new Date();
  pDate.setDate(pDate.getDate() - 8);
  rate.setLsItem("promptDate", pDate);
+ rate.promptDate = pDate;
  rate.setLsItem("eventsWeek", 1);
+ rate.eventsWeek = 1;
  rate.setLsItem("prompted", "yes");
+ rate.prompted = "yes";
  rate.setLsItem("usesWeek", 1);
+ rate.usesWeek = "yes";
 
  assert.equal(rate.shouldPrompt() , false);
  rate.clear();
@@ -380,9 +458,13 @@ QUnit.test("Prompted Once ** Weekly: Uses 0/5, Events 10/12, delay 0/2 - PROMPT"
  var pDate = new Date();
  pDate.setDate(pDate.getDate() - 2);
  rate.setLsItem("promptDate", pDate);
+ rate.promptDate = pDate;
  rate.setLsItem("prompted", "yes");
+ rate.prompted = "yes";
  rate.setLsItem("usesWeek", 5);
+ rate.usesWeek = 5;
  rate.setLsItem("eventsWeek", 12) ;
+ rate.eventsWeek = 12;
 
  assert.equal(rate.shouldPrompt() , true);
  rate.clear();
@@ -396,9 +478,13 @@ QUnit.test("Prompted Once ** Weekly: Uses 0/5, Events 10/12, delay 0/2 - NO PROM
  var pDate = new Date();
  pDate.setDate(pDate.getDate() - 2);
  rate.setLsItem("promptDate", pDate);
+ rate.promptDate = pDate;
  rate.setLsItem("prompted", "yes");
+ rate.prompted = "yes";
  rate.setLsItem("usesWeek", 1);
+ rate.usesWeek = 1;
  rate.setLsItem("eventsWeek", 8) ;
+ rate.eventsWeek = 1;
 
  assert.equal(rate.shouldPrompt() , false);
  rate.clear();
@@ -412,9 +498,13 @@ QUnit.test("Prompted Once ** Weekly: Uses 5/4, Events 10/11, delay 0/2 - NO PROM
  var pDate = new Date();
  pDate.setDate(pDate.getDate() - 2);
  rate.setLsItem("promptDate", pDate);
+ rate.promptDate = pDate;
  rate.setLsItem("prompted", "yes");
+ rate.prompted = "yes";
  rate.setLsItem("usesWeek", 4);
+ rate.usesWeek = 4;
  rate.setLsItem("eventsWeek", 11) ;
+ rate.eventsWeek = 1;
 
  assert.equal(rate.shouldPrompt() , false);
  rate.clear();
@@ -428,9 +518,13 @@ QUnit.test("Prompted Once ** Weekly: Uses 5/6, Events 10/11, delay 0/2 - PROMPT"
  var pDate = new Date();
  pDate.setDate(pDate.getDate() - 2);
  rate.setLsItem("promptDate", pDate);
+ rate.promptDate = pDate;
  rate.setLsItem("prompted", "yes");
+ rate.prompted = "yes";
  rate.setLsItem("usesWeek", 6);
+ rate.usesWeek = 6;
  rate.setLsItem("eventsWeek", 11) ;
+ rate.eventsWeek = 11;
 
  assert.equal(rate.shouldPrompt() , true);
  rate.clear();
@@ -444,9 +538,13 @@ QUnit.test("Prompted Once ** Weekly: Uses 6/5, Events 10/8, delay 0/2 - NO PROMP
  var pDate = new Date();
  pDate.setDate(pDate.getDate() - 2);
  rate.setLsItem("promptDate", pDate);
+ rate.promptDate = pDate;
  rate.setLsItem("prompted", "yes");
+ rate.prompted = "yes";
  rate.setLsItem("usesWeek", 5);
+ rate.usesWeek = 5;
  rate.setLsItem("eventsWeek", 8) ;
+ rate.eventsWeek = 8;
 
  assert.equal(rate.shouldPrompt() , false);
  rate.clear();
@@ -462,9 +560,13 @@ QUnit.test("Prompted Once ** Weekly: Uses 20/19, Events 30/29, delay 10/9 - NO P
  var pDate = new Date();
  pDate.setDate(pDate.getDate() - 9);
  rate.setLsItem("promptDate", pDate);
+ rate.promptDate = pDate;
  rate.setLsItem("prompted", "yes");
+ rate.prompted = "yes";
  rate.setLsItem("usesWeek", 19);
+ rate.usesWeek = 19;
  rate.setLsItem("eventsWeek", 29) ;
+ rate.eventsWeek = 29;
 
  assert.equal(rate.shouldPrompt() , false);
  rate.clear();
@@ -479,9 +581,13 @@ QUnit.test("Prompted Once ** Weekly: Uses 20/19, Events 30/31, delay 10/9 - NO P
  var pDate = new Date();
  pDate.setDate(pDate.getDate() - 9);
  rate.setLsItem("promptDate", pDate);
+ rate.promptDate = pDate;
  rate.setLsItem("prompted", "yes");
+ rate.prompted = "yes";
  rate.setLsItem("usesWeek", 19);
+ rate.usesWeek = 19;
  rate.setLsItem("eventsWeek", 31) ;
+ rate.eventsWeek = 31;
 
  assert.equal(rate.shouldPrompt() , false);
  rate.clear();
@@ -495,9 +601,13 @@ QUnit.test("Prompted Once ** Weekly: Uses 20/19, Events 30/29, delay 10/11 - NO 
  var pDate = new Date();
  pDate.setDate(pDate.getDate() - 11);
  rate.setLsItem("promptDate", pDate);
+ rate.promptDate = pDate;
  rate.setLsItem("prompted", "yes");
+ rate.prompted = "yes";
  rate.setLsItem("usesWeek", 19);
+ rate.usesWeek = 19;
  rate.setLsItem("eventsWeek", 29) ;
+ rate.eventsWeek = 29;
 
  assert.equal(rate.shouldPrompt() , false);
  rate.clear();
@@ -512,9 +622,13 @@ QUnit.test("Prompted Once ** Weekly: Uses 20/19, Events 30/31, delay 10/11 - NO 
  var pDate = new Date();
  pDate.setDate(pDate.getDate() - 11);
  rate.setLsItem("promptDate", pDate);
+ rate.promptDate = pDate;
  rate.setLsItem("prompted", "yes");
+ rate.prompted = "yes";
  rate.setLsItem("usesWeek", 19);
+ rate.usesWeek = 19;
  rate.setLsItem("eventsWeek", 31) ;
+ rate.eventsWeek = 31;
 
  assert.equal(rate.shouldPrompt() , false);
  rate.clear();
@@ -529,9 +643,13 @@ QUnit.test("Prompted Once ** Weekly: Uses 20/21, Events 30/29, delay 10/9 - NO P
  var pDate = new Date();
  pDate.setDate(pDate.getDate() - 9);
  rate.setLsItem("promptDate", pDate);
+ rate.promptDate = pDate;
  rate.setLsItem("prompted", "yes");
+ rate.prompted = "yes";
  rate.setLsItem("usesWeek", 21);
+ rate.usesWeek = 21;
  rate.setLsItem("eventsWeek", 29) ;
+ rate.eventsWeek = 29;
 
  assert.equal(rate.shouldPrompt() , false);
  rate.clear();
@@ -545,9 +663,13 @@ QUnit.test("Prompted Once ** Weekly: Uses 20/21, Events 30/31, delay 10/9 - NO P
  var pDate = new Date();
  pDate.setDate(pDate.getDate() - 9);
  rate.setLsItem("promptDate", pDate);
+ rate.promptDate = pDate;
  rate.setLsItem("prompted", "yes");
+ rate.prompted = "yes";
  rate.setLsItem("usesWeek", 21);
+ rate.usesWeek = 21;
  rate.setLsItem("eventsWeek", 31) ;
+ rate.eventsWeek = 31;
 
  assert.equal(rate.shouldPrompt() , false);
  rate.clear();
@@ -561,9 +683,13 @@ QUnit.test("Prompted Once ** Weekly: Uses 20/21, Events 30/31, delay 10/11 - PRO
  var pDate = new Date();
  pDate.setDate(pDate.getDate() - 11);
  rate.setLsItem("promptDate", pDate);
+ rate.promptDate = pDate;
  rate.setLsItem("prompted", "yes");
+ rate.prompted = "yes";
  rate.setLsItem("usesWeek", 21);
- rate.setLsItem("eventsWeek", 31) ;
+ rate.usesWeek = 21;
+ rate.setLsItem("eventsWeek", 31);
+ rate.eventsWeek = 31;
 
  assert.equal(rate.shouldPrompt() , true);
  rate.clear();
@@ -577,9 +703,13 @@ QUnit.test("Prompted Once ** Weekly: Uses 20/21, Events 30/29, delay 10/11 - NO 
  var pDate = new Date();
  pDate.setDate(pDate.getDate() - 9);
  rate.setLsItem("promptDate", pDate);
+ rate.promptDate = pDate;
  rate.setLsItem("prompted", "yes");
+ rate.prompted = "yes";
  rate.setLsItem("usesWeek", 21);
+ rate.usesWeek = 21;
  rate.setLsItem("eventsWeek", 29) ;
+ rate.eventsWeek = 29;
 
  assert.equal(rate.shouldPrompt() , false);
  rate.clear();
