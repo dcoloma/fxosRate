@@ -237,10 +237,10 @@
         });
         activity.onerror = function() {
           window.open(this.MARKETBASEURL + this.applicationName + '/ratings/add');
-        }
-			} else {
+        };
+      } else {
         window.open(this.MARKETBASEURL + this.applicationName + '/ratings/add');
-			}
+      }
     } else {
       var later = window.confirm(navigator.mozL10n.get('wantremindlater'));
       if (later !== true) {
